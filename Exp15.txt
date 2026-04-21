@@ -1,0 +1,27 @@
+#dockerfile
+FROM ubuntu
+CMD ["echo", "Hello Docker from CI/CD"]
+
+#.github/workflows/docker.yml
+name: Docker Build
+
+on:
+  push:
+    branches:
+      - main   
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+    
+      - name: Check Docker version
+        run: docker --version
+
+      
+      - name: Build Docker Image
+        run: docker build -t my-image:latest .
