@@ -7,11 +7,9 @@ on:
   pull_request:
     branches:
       - main
-
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
       # Step 1: Get code
       - name: Checkout Code
