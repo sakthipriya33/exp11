@@ -1,0 +1,28 @@
+#dist/index.html
+<h1>Hello GitHub Pages </h1>
+
+#.github/workflows/deploy.yml
+name: Deploy Site
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write   
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4   
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4   
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+#go to settings then pages change to gh-page
+#https://sakthipriya33.github.io/repo-name/
