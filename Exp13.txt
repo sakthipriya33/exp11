@@ -1,0 +1,35 @@
+#index.html
+<h1>Hello CI/CD 🚀</h1>
+
+#.github/workflows/deploy.yml
+name: Deploy Site
+
+on:
+  push:
+    branches:
+      - main   # runs on every push
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Build step (create dist folder)
+      - name: Build
+        run: |
+          mkdir dist
+          cp index.html dist/
+
+      # Deploy to GitHub Pages
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+
+#run like 19
